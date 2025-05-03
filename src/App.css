@@ -1,0 +1,58 @@
+html, body, #root {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.display {
+  padding: 30px 118px;
+  margin-bottom: 10px;
+  background-color: #5ed6da;
+  border-radius: 6px;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: sans-serif;
+  border: 1px #5ed6da solid;
+}
+
+.card{
+  border-radius: 6px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 3px #5ed6da solid;
+}
+
+.button-container{
+  padding: 10px;
+  display: flex;
+  gap: 20px;
+  border: 3px #5ed6da solid;
+  border-radius: 6px;
+  /*overflow: hidden;*/
+}
+
+button {
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #5ed6da;
+  color: white;
+}
+
+button:disabled{
+  background-color: #c9d6d6;
+}
