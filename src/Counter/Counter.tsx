@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Display} from "./Display.tsx";
-import {Buttons} from "../Buttons.tsx";
+import {Buttons} from "./Buttons.tsx";
 
 
 export const Counter = () => {

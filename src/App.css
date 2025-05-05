@@ -9,7 +9,13 @@ html, body, #root {
 }
 
 .display {
-  padding: 30px 118px;
+  width: 240px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*padding: 30px 118px;*/
   margin-bottom: 10px;
   background-color: #5ed6da;
   border-radius: 6px;
@@ -17,12 +23,12 @@ html, body, #root {
 
 .App {
   display: flex;
-  flex-direction: column;
+  gap: 20px;
   align-items: center;
   justify-content: center;
   height: 100vh;
   font-family: sans-serif;
-  border: 1px #5ed6da solid;
+  /*border: 1px #5ed6da solid;*/
 }
 
 .card{
@@ -35,12 +41,13 @@ html, body, #root {
 }
 
 .button-container{
+  width: 240px;
   padding: 10px;
   display: flex;
+  justify-content: center;
   gap: 20px;
   border: 3px #5ed6da solid;
   border-radius: 6px;
-  /*overflow: hidden;*/
 }
 
 button {

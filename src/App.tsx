@@ -1,10 +1,12 @@
 import './App.css'
-import {Counter} from "./components/Counter.tsx";
+import {Counter} from "./Counter/Counter.tsx";
+import {Settings} from "./Settings/Settings.tsx";
 
 function App() {
 
     return (
         <div className="App">
+            <Settings/>
             <Counter/>
         </div>
     )
