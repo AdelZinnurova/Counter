@@ -1,13 +1,17 @@
-// type SettingsButtonPropsType = {
-//
-// }
-
 import {Button} from "../components/Button.tsx";
 
-export const SettingsButton = () => {
+
+type SettingsButtonPropsType = {
+    changeStartCountInCounter: () => void
+}
+
+export const SettingsButton = (props: SettingsButtonPropsType) => {
     return (
         <div className='button-container'>
-            <Button title='set'/>
+            <Button
+                title='set'
+                onClick={() => props.changeStartCountInCounter()}
+            />
         </div>
     );
 };

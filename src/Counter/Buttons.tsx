@@ -5,13 +5,14 @@ type ButtonsPropsType = {
     incCount: () => void
     disabled?: boolean
     count: number
+    maxCount: number
 }
 
 export const Buttons = (props: ButtonsPropsType) => {
 
     return (
         <div className='button-container'>
-            <Button title='inc' disabled={props.count === 5} onClick={() => props.incCount()}/>
+            <Button title='inc' disabled={props.count === props.maxCount} onClick={() => props.incCount()}/>
             <Button title='reset' disabled={props.count === 0} onClick={() => props.resetCount()}/>
         </div>
     );

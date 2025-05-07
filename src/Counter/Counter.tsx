@@ -1,28 +1,25 @@
-import {useState} from "react";
 import {Display} from "./Display.tsx";
 import {Buttons} from "./Buttons.tsx";
 
+type CounterPropsType = {
+    incCount: () => void
+    resetCount: () => void
+    count: number
+    maxCount: number
+}
 
-export const Counter = () => {
-    const [count, setCount] = useState(0);
 
-    const resetCount = () => {
-        setCount(0)
-    }
+export const Counter = (props: CounterPropsType) => {
 
-    const incCount = () => {
-        if (count < 5) {
-            setCount(count + 1)
-        }
-    }
 
     return (
         <div className="card">
-            <Display value={count}/>
+            <Display value={props.count}/>
             <Buttons
-                resetCount={resetCount}
-                incCount={incCount}
-                count={count}
+                resetCount={props.resetCount}
+                incCount={props.incCount}
+                count={props.count}
+                maxCount={props.maxCount}
             />
         </div>
     );

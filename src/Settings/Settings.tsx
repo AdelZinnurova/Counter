@@ -1,22 +1,22 @@
 import {SettingsDisplay} from "./SettingsDisplay.tsx";
 import {SettingsButton} from "./SettingsButton.tsx";
+import {ChangeEvent} from "react";
 
+type SettingsPropsType = {
+    maxCount: number
+    startCount: number
+    changeStartCount: (event: ChangeEvent<HTMLInputElement>) => void
+    changeMaxCount: (event: ChangeEvent<HTMLInputElement>) => void
+    changeStartCountInCounter: () => void
+}
 
-export const Settings = () => {
-
-
-    // const addCount = () => {
-    //     setStartCount(startCount + 1)
-    // }
-    //
-    // const removeCount = () => {
-    //     setMaxCount(maxCount - 1)
-    // }
+export const Settings = (props: SettingsPropsType) => {
 
     return (
         <div className="card">
-            <SettingsDisplay/>
-            <SettingsButton/>
+            <SettingsDisplay maxCount={props.maxCount} startCount={props.startCount} changeStartCount={props.changeStartCount}
+            changeMaxCount={props.changeMaxCount} />
+            <SettingsButton changeStartCountInCounter={props.changeStartCountInCounter}/>
         </div>
     );
 };

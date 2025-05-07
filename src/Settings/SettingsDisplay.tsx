@@ -1,43 +1,33 @@
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent} from "react";
 
-// type SettingsDisplayPropsType = {
-//     startValue: number
-//     maxValue: number
-// }
+type SettingsDisplayPropsType = {
+    maxCount: number
+    startCount: number
+    changeStartCount: (event: ChangeEvent<HTMLInputElement>) => void
+    changeMaxCount: (event: ChangeEvent<HTMLInputElement>) => void
+}
 
-export const SettingsDisplay = () => {
 
-    const [maxCount, setMaxCount] = useState<number>(5);
-    const [startCount, setStartCount] = useState<number>(0);
-
-    const changeMaxCount = (event: ChangeEvent<HTMLInputElement>) => {
-        setMaxCount(Number(event.currentTarget.value))
-    }
-
-    const changeStartCount = (event: ChangeEvent<HTMLInputElement>) => {
-        setStartCount(Number(event.currentTarget.value))
-    }
+export const SettingsDisplay = (props: SettingsDisplayPropsType) => {
 
     return (
         <div className="display">
             <div>
                 <label>max value:</label>
                 <input
-                    value={maxCount}
+                    // value={props.maxCount}
                     type={'number'}
-                    onChange={changeMaxCount}
+                    onChange={props.changeMaxCount}
                 />
             </div>
             <div>
                 <label>start value:</label>
                 <input
-                    value={startCount}
+                    // value={props.startCount}
                     type={'number'}
-                    onChange={changeStartCount}
+                    onChange={props.changeStartCount}
                 />
             </div>
         </div>
     );
 };
-
-1
