@@ -16,7 +16,12 @@ export const Settings = (props: SettingsPropsType) => {
         <div className="card">
             <SettingsDisplay maxCount={props.maxCount} startCount={props.startCount} changeStartCount={props.changeStartCount}
             changeMaxCount={props.changeMaxCount} />
-            <SettingsButton changeStartCountInCounter={props.changeStartCountInCounter}/>
+            <SettingsButton
+                changeStartCountInCounter={props.changeStartCountInCounter}
+                startCount={props.startCount}
+                disabled={props.startCount < 0}
+                maxCount={props.maxCount}
+            />
         </div>
     );
 };

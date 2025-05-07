@@ -6,6 +6,8 @@ type CounterPropsType = {
     resetCount: () => void
     count: number
     maxCount: number
+    startCount: number
+    error?: string | null
 }
 
 
@@ -14,7 +16,10 @@ export const Counter = (props: CounterPropsType) => {
 
     return (
         <div className="card">
-            <Display value={props.count}/>
+            <Display maxCount={props.maxCount}
+                     startCount={props.startCount}
+                     count={props.count}
+                     error={props.error}/>
             <Buttons
                 resetCount={props.resetCount}
                 incCount={props.incCount}

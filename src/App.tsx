@@ -7,6 +7,7 @@ function App() {
     const [maxCount, setMaxCount] = useState<number>(5);
     const [startCount, setStartCount] = useState<number>(0);
     const [count, setCount] = useState(0);
+    // const [error, setError] = useState<string | null>(null);
 
     // Counter
 
@@ -31,10 +32,6 @@ function App() {
     const changeStartCount = (event: ChangeEvent<HTMLInputElement>) => {
         setStartCount(Number(event.currentTarget.value))
     }
-    //
-    // const changeStartCount = (event: ChangeEvent<HTMLInputElement>) => {
-    //     setCount(Number(event.currentTarget.value))
-    // }
 
 
     return (
@@ -51,6 +48,7 @@ function App() {
                 resetCount={resetCount}
                 count={count}
                 maxCount={maxCount}
+                startCount={startCount}
             />
         </div>
     )

@@ -18,6 +18,7 @@ export const SettingsDisplay = (props: SettingsDisplayPropsType) => {
                     // value={props.maxCount}
                     type={'number'}
                     onChange={props.changeMaxCount}
+                    style={{backgroundColor: props.startCount === props.maxCount || props.startCount > props.maxCount  ? 'red' : 'white'}}
                 />
             </div>
             <div>
@@ -26,6 +27,7 @@ export const SettingsDisplay = (props: SettingsDisplayPropsType) => {
                     // value={props.startCount}
                     type={'number'}
                     onChange={props.changeStartCount}
+                    style={{backgroundColor: props.startCount < 0 || props.startCount === props.maxCount || props.startCount > props.maxCount  ? 'red' : 'white'}}
                 />
             </div>
         </div>
