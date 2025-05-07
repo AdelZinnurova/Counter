@@ -8,6 +8,7 @@ type CounterPropsType = {
     maxCount: number
     startCount: number
     error?: string | null
+    isSet: boolean
 }
 
 
@@ -19,7 +20,9 @@ export const Counter = (props: CounterPropsType) => {
             <Display maxCount={props.maxCount}
                      startCount={props.startCount}
                      count={props.count}
-                     error={props.error}/>
+                     error={props.error}
+                     isSet={props.isSet}
+            />
             <Buttons
                 resetCount={props.resetCount}
                 incCount={props.incCount}

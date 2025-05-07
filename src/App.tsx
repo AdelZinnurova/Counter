@@ -7,6 +7,7 @@ function App() {
     const [maxCount, setMaxCount] = useState<number>(5);
     const [startCount, setStartCount] = useState<number>(0);
     const [count, setCount] = useState(0);
+    const [isSet, setIsSet] = useState<boolean>(false);
     // const [error, setError] = useState<string | null>(null);
 
     // Counter
@@ -20,16 +21,19 @@ function App() {
     }
 
     const changeStartCountInCounter = () => {
+        setIsSet(true);
         setCount(startCount)
     }
 
     // Settings
 
     const changeMaxCount = (event: ChangeEvent<HTMLInputElement>) => {
+        setIsSet(false);
         setMaxCount(Number(event.currentTarget.value))
     }
 
     const changeStartCount = (event: ChangeEvent<HTMLInputElement>) => {
+        setIsSet(false);
         setStartCount(Number(event.currentTarget.value))
     }
 
@@ -49,6 +53,7 @@ function App() {
                 count={count}
                 maxCount={maxCount}
                 startCount={startCount}
+                isSet={isSet}
             />
         </div>
     )
