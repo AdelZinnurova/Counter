@@ -28,6 +28,7 @@ export const Counter = (props: CounterPropsType) => {
                 incCount={props.incCount}
                 count={props.count}
                 maxCount={props.maxCount}
+                isSet={props.isSet}
             />
         </div>
     );

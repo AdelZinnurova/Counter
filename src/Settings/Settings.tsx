@@ -8,6 +8,7 @@ type SettingsPropsType = {
     changeStartCount: (event: ChangeEvent<HTMLInputElement>) => void
     changeMaxCount: (event: ChangeEvent<HTMLInputElement>) => void
     changeStartCountInCounter: () => void
+    isSet: boolean
 }
 
 export const Settings = (props: SettingsPropsType) => {
@@ -21,6 +22,7 @@ export const Settings = (props: SettingsPropsType) => {
                 startCount={props.startCount}
                 disabled={props.startCount < 0}
                 maxCount={props.maxCount}
+                isSet={props.isSet}
             />
         </div>
     );

@@ -8,7 +8,6 @@ function App() {
     const [startCount, setStartCount] = useState<number>(0);
     const [count, setCount] = useState(0);
     const [isSet, setIsSet] = useState<boolean>(false);
-    // const [error, setError] = useState<string | null>(null);
 
     // Counter
 
@@ -17,7 +16,7 @@ function App() {
     }
 
     const incCount = () => {
-            setCount(count + 1)
+        setCount(count + 1)
     }
 
     const changeStartCountInCounter = () => {
@@ -46,6 +45,7 @@ function App() {
                 changeStartCount={changeStartCount}
                 changeMaxCount={changeMaxCount}
                 changeStartCountInCounter={changeStartCountInCounter}
+                isSet={isSet}
             />
             <Counter
                 incCount={incCount}
