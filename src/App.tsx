@@ -1,13 +1,38 @@
 import './App.css'
 import {Counter} from "./Counter/Counter.tsx";
 import {Settings} from "./Settings/Settings.tsx";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 
 function App() {
-    const [maxCount, setMaxCount] = useState<number>(5);
-    const [startCount, setStartCount] = useState<number>(0);
-    const [count, setCount] = useState(0);
-    const [isSet, setIsSet] = useState<boolean>(false);
+    const [maxCount, setMaxCount] = useState<number>(() => {
+        const newValue = localStorage.getItem('maxValue');
+        return newValue ? JSON.parse(newValue) : 5;
+    });
+    const [startCount, setStartCount] = useState<number>(() => {
+        const newValue = localStorage.getItem('startValue');
+        return newValue ? JSON.parse(newValue) : 0;
+    });
+    const [count, setCount] = useState<number>(() => {
+        const newValue = localStorage.getItem('countValue');
+        if (newValue !== null) return JSON.parse(newValue);
+        return startCount;
+    });
+    const [isSet, setIsSet] = useState<boolean>(() => {
+        return localStorage.getItem('countValue') !== null;
+    });
+
+    useEffect(() => {
+        localStorage.setItem('maxValue', JSON.stringify(maxCount));
+    }, [maxCount]);
+
+    useEffect(() => {
+        localStorage.setItem('startValue', JSON.stringify(startCount));
+    }, [startCount]);
+
+    useEffect(() => {
+        localStorage.setItem('countValue', JSON.stringify(count));
+    }, [count]);
+
 
     // Counter
 
