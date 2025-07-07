@@ -1,4 +1,4 @@
-import {Button} from "../components/Button.tsx";
+import {Button} from "../Button.tsx";
 
 type ButtonsPropsType = {
     resetCount: () => void

@@ -1,31 +1,20 @@
 import './App.css'
-import {Counter} from "../Counter/Counter.tsx";
-import {Settings} from "../Settings/Settings.tsx";
-import {ChangeEvent, useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "./store.ts";
+import {Counter} from "../common/components/Counter/Counter.tsx";
+import {Settings} from "../common/components/Settings/Settings.tsx";
+import {ChangeEvent, useEffect} from "react";
+import {useAppSelector} from "../common/hooks/useAppSelector.ts";
+import {useAppDispatch} from "../common/hooks/useAppDispatch.ts";
+import {selectCounter} from "../features/model/counter-selectors.ts";
+import {selectSettings} from "../features/model/settings-selectors.ts";
+import {incCountAC, resetCountAC} from "../features/model/counter-reducer.ts";
+import {changeMaxCountAC, changeStartCountAC, changeStartCountInCounterAC} from "../features/model/settings-reducer.ts";
 
 function App() {
 
-    const count = useSelector<RootState, number>(state => state.count);
-    const dispatch = useDispatch()
+    const count = useAppSelector(selectCounter);
+    const settings = useAppSelector(selectSettings);
+    const dispatch = useAppDispatch()
 
-    const [maxCount, setMaxCount] = useState<number>(() => {
-        const newValue = localStorage.getItem('maxValue');
-        return newValue ? JSON.parse(newValue) : 5;
-    });
-    const [startCount, setStartCount] = useState<number>(() => {
-        const newValue = localStorage.getItem('startValue');
-        return newValue ? JSON.parse(newValue) : 0;
-    });
-    // const [count, setCount] = useState<number>(() => {
-    //     const newValue = localStorage.getItem('countValue');
-    //     if (newValue !== null) return JSON.parse(newValue);
-    //     return startCount;
-    // });
-    const [isSet, setIsSet] = useState<boolean>(() => {
-        return localStorage.getItem('countValue') !== null;
-    });
 
     useEffect(() => {
         localStorage.setItem('maxValue', JSON.stringify(maxCount));
@@ -43,28 +32,25 @@ function App() {
     // Counter
 
     const resetCount = () => {
-        dispatch(0)
+        dispatch(resetCountAC())
     }
 
     const incCount = () => {
-        dispatch(count + 1)
+        dispatch(incCountAC())
     }
 
     const changeStartCountInCounter = () => {
-        setIsSet(true);
-        dispatch(startCount)
+        dispatch(changeStartCountInCounterAC())
     }
 
     // Settings
 
     const changeMaxCount = (event: ChangeEvent<HTMLInputElement>) => {
-        setIsSet(false);
-        setMaxCount(Number(event.currentTarget.value))
+        dispatch(changeMaxCountAC({ event }))
     }
 
     const changeStartCount = (event: ChangeEvent<HTMLInputElement>) => {
-        setIsSet(false);
-        setStartCount(Number(event.currentTarget.value))
+        dispatch(changeStartCountAC({ event }))
     }
 
 
