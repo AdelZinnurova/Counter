@@ -1,9 +1,15 @@
 import './App.css'
-import {Counter} from "./Counter/Counter.tsx";
-import {Settings} from "./Settings/Settings.tsx";
+import {Counter} from "../Counter/Counter.tsx";
+import {Settings} from "../Settings/Settings.tsx";
 import {ChangeEvent, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "./store.ts";
 
 function App() {
+
+    const count = useSelector<RootState, number>(state => state.count);
+    const dispatch = useDispatch()
+
     const [maxCount, setMaxCount] = useState<number>(() => {
         const newValue = localStorage.getItem('maxValue');
         return newValue ? JSON.parse(newValue) : 5;
@@ -12,11 +18,11 @@ function App() {
         const newValue = localStorage.getItem('startValue');
         return newValue ? JSON.parse(newValue) : 0;
     });
-    const [count, setCount] = useState<number>(() => {
-        const newValue = localStorage.getItem('countValue');
-        if (newValue !== null) return JSON.parse(newValue);
-        return startCount;
-    });
+    // const [count, setCount] = useState<number>(() => {
+    //     const newValue = localStorage.getItem('countValue');
+    //     if (newValue !== null) return JSON.parse(newValue);
+    //     return startCount;
+    // });
     const [isSet, setIsSet] = useState<boolean>(() => {
         return localStorage.getItem('countValue') !== null;
     });
@@ -37,16 +43,16 @@ function App() {
     // Counter
 
     const resetCount = () => {
-        setCount(0)
+        dispatch(0)
     }
 
     const incCount = () => {
-        setCount(count + 1)
+        dispatch(count + 1)
     }
 
     const changeStartCountInCounter = () => {
         setIsSet(true);
-        setCount(startCount)
+        dispatch(startCount)
     }
 
     // Settings
