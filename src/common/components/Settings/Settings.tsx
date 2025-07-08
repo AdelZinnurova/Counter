@@ -1,28 +1,22 @@
 import {SettingsDisplay} from "./SettingsDisplay.tsx";
 import {SettingsButton} from "./SettingsButton.tsx";
-import {ChangeEvent} from "react";
+import {selectSettings} from "../../../features/model/settings-selectors.ts";
+import {useAppSelector} from "../../hooks/useAppSelector.ts";
 
-type SettingsPropsType = {
-    maxCount: number
-    startCount: number
-    changeStartCount: (event: ChangeEvent<HTMLInputElement>) => void
-    changeMaxCount: (event: ChangeEvent<HTMLInputElement>) => void
-    changeStartCountInCounter: () => void
-    isSet: boolean
-}
+export const Settings = () => {
 
-export const Settings = (props: SettingsPropsType) => {
+    const { maxCount, startCount, isSet } = useAppSelector(selectSettings);
 
     return (
         <div className="card">
-            <SettingsDisplay maxCount={props.maxCount} startCount={props.startCount} changeStartCount={props.changeStartCount}
-            changeMaxCount={props.changeMaxCount} />
+            <SettingsDisplay
+                maxCount={maxCount}
+                startCount={startCount}
+            />
             <SettingsButton
-                changeStartCountInCounter={props.changeStartCountInCounter}
-                startCount={props.startCount}
-                disabled={props.startCount < 0}
-                maxCount={props.maxCount}
-                isSet={props.isSet}
+                maxCount={maxCount}
+                startCount={startCount}
+                isSet={isSet}
             />
         </div>
     );

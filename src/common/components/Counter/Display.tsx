@@ -1,3 +1,5 @@
+import {initialStateSettings} from "../../../features/model/settings-reducer.ts";
+
 type DisplayPropsType = {
     maxCount: number
     startCount: number
@@ -8,17 +10,18 @@ type DisplayPropsType = {
 
 export const Display = (props: DisplayPropsType) => {
 
-    if (props.startCount < 0 || props.startCount === props.maxCount || props.startCount > props.maxCount) {
+
+    if (initialStateSettings.startCount < 0 || initialStateSettings.startCount === initialStateSettings.maxCount || initialStateSettings.startCount > initialStateSettings.maxCount) {
         return <div className="display">Incorrect value!</div>
     }
 
-    if (!props.isSet) {
+    if (!initialStateSettings.isSet) {
         return <div className="display">Enter values and press 'Set'</div>;
     }
 
     return (
-        <div className="display" style={{color: props.count === props.maxCount ? 'red' : 'inherit'}}>
-            {props.count}
+        <div className="display" style={{color: props.count === initialStateSettings.maxCount ? 'red' : 'inherit'}}>
+            {initialState}
         </div>
     );
 };

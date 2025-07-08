@@ -1,9 +1,8 @@
 import {createAction, createReducer} from "@reduxjs/toolkit";
-import {ChangeEvent} from "react";
 
 export const changeStartCountInCounterAC = createAction("settings/changeStartCountInCounter")
-export const changeMaxCountAC = createAction<{ event: ChangeEvent<HTMLInputElement> }>("settings/changeMaxCount")
-export const changeStartCountAC = createAction<{ event: ChangeEvent<HTMLInputElement> }>("settings/changeStartCount")
+export const changeMaxCountAC = createAction<{ value: number }>("settings/changeMaxCount")
+export const changeStartCountAC = createAction<{ value: number }>("settings/changeStartCount")
 
 type SettingsState = {
     maxCount: number
@@ -11,23 +10,23 @@ type SettingsState = {
     isSet: boolean
 }
 
-const initialState: SettingsState = {
+export const initialStateSettings: SettingsState = {
     maxCount: 5,
     startCount: 0,
     isSet: false,
 }
 
-export const settingsReducer = createReducer(initialState, builder => {
+export const settingsReducer = createReducer(initialStateSettings, builder => {
     builder
         .addCase(changeStartCountInCounterAC, state => {
             state.isSet = true
         })
         .addCase(changeMaxCountAC, (state, action) => {
-            state.maxCount = Number(action.payload.event.currentTarget.value)
+            state.maxCount = Number(action.payload.value)
             state.isSet = false
         })
         .addCase(changeStartCountAC, (state, action) => {
-            state.startCount = Number(action.payload.event.currentTarget.value)
+            state.startCount = Number(action.payload.value)
             state.isSet = false
         })
 })

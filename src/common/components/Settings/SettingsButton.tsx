@@ -1,21 +1,28 @@
 import {Button} from "../Button.tsx";
-
+import {changeStartCountInCounterAC} from "../../../features/model/settings-reducer.ts";
+import {useAppDispatch} from "../../hooks/useAppDispatch.ts";
 
 type SettingsButtonPropsType = {
-    changeStartCountInCounter: () => void
-    disabled:boolean
-    startCount: number
     maxCount: number
+    startCount: number
     isSet: boolean
 }
 
-export const SettingsButton = (props: SettingsButtonPropsType) => {
+
+export const SettingsButton = ({maxCount, startCount, isSet}: SettingsButtonPropsType) => {
+
+    const dispatch = useAppDispatch()
+
+    const changeStartCountInCounter = () => {
+        dispatch(changeStartCountInCounterAC())
+    }
+
     return (
         <div className='button-container'>
             <Button
-                disabled={props.isSet || props.startCount < 0 || props.startCount === props.maxCount || props.startCount > props.maxCount}
+                disabled={isSet || startCount < 0 || startCount === maxCount || startCount > maxCount}
                 title='set'
-                onClick={() => props.changeStartCountInCounter()}
+                onClick={() => changeStartCountInCounter()}
             />
         </div>
     );
