@@ -1,20 +1,33 @@
 import {Button} from "../Button.tsx";
+import {useAppSelector} from "../../hooks/useAppSelector.ts";
+import {selectCounter} from "../../../features/model/counter-selectors.ts";
+import {useAppDispatch} from "../../hooks/useAppDispatch.ts";
+import {useEffect} from "react";
+import {incCountAC, resetCountAC} from "../../../features/model/counter-reducer.ts";
+import {selectSettings} from "../../../features/model/settings-selectors.ts";
 
-type ButtonsPropsType = {
-    resetCount: () => void
-    incCount: () => void
-    disabled?: boolean
-    count: number
-    maxCount: number
-    isSet: boolean
-}
+export const Buttons = () => {
 
-export const Buttons = (props: ButtonsPropsType) => {
+    const { maxCount, isSet } = useAppSelector(selectSettings)
+    const count = useAppSelector(selectCounter);
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        localStorage.setItem('countValue', JSON.stringify(count));
+    }, [count]);
+
+    const resetCount = () => {
+        dispatch(resetCountAC())
+    }
+
+    const incCount = () => {
+        dispatch(incCountAC())
+    }
 
     return (
         <div className='button-container'>
-            <Button title='inc' disabled={props.count === props.maxCount || !props.isSet} onClick={() => props.incCount()}/>
-            <Button title='reset' disabled={props.count === 0} onClick={() => props.resetCount()}/>
+            <Button title='inc' disabled={count === maxCount || !isSet} onClick={() => incCount()}/>
+            <Button title='reset' disabled={count === 0} onClick={() => resetCount()}/>
         </div>
     );
 };

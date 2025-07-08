@@ -1,16 +1,13 @@
 import {Button} from "../Button.tsx";
 import {changeStartCountInCounterAC} from "../../../features/model/settings-reducer.ts";
 import {useAppDispatch} from "../../hooks/useAppDispatch.ts";
-
-type SettingsButtonPropsType = {
-    maxCount: number
-    startCount: number
-    isSet: boolean
-}
+import {useAppSelector} from "../../hooks/useAppSelector.ts";
+import {selectSettings} from "../../../features/model/settings-selectors.ts";
 
 
-export const SettingsButton = ({maxCount, startCount, isSet}: SettingsButtonPropsType) => {
+export const SettingsButton = () => {
 
+    const { maxCount, startCount, isSet } = useAppSelector(selectSettings)
     const dispatch = useAppDispatch()
 
     const changeStartCountInCounter = () => {

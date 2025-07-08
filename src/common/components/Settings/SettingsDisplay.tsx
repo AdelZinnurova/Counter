@@ -1,15 +1,12 @@
 import {useEffect} from "react";
 import {changeMaxCountAC, changeStartCountAC} from "../../../features/model/settings-reducer.ts";
 import {useAppDispatch} from "../../hooks/useAppDispatch.ts";
+import {useAppSelector} from "../../hooks/useAppSelector.ts";
+import {selectSettings} from "../../../features/model/settings-selectors.ts";
 
-type SettingsDisplayPropsType = {
-    maxCount: number
-    startCount: number
-}
+export const SettingsDisplay = () => {
 
-
-export const SettingsDisplay = ({maxCount, startCount}: SettingsDisplayPropsType) => {
-
+    const { maxCount, startCount } = useAppSelector(selectSettings)
     const dispatch = useAppDispatch()
 
     useEffect(() => {

@@ -1,4 +1,3 @@
-import {useAppSelector} from "../../common/hooks/useAppSelector.ts";
+import {RootState} from "../../app/store.ts";
 
-
-export const selectCounter = useAppSelector(state => state.counter);
+export const selectCounter = (state: RootState) => state.counter;

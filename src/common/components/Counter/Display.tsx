@@ -1,27 +1,24 @@
-import {initialStateSettings} from "../../../features/model/settings-reducer.ts";
+import {} from "../../../features/model/settings-reducer.ts";
+import {useAppSelector} from "../../hooks/useAppSelector.ts";
+import {selectSettings} from "../../../features/model/settings-selectors.ts";
+import {selectCounter} from "../../../features/model/counter-selectors.ts";
 
-type DisplayPropsType = {
-    maxCount: number
-    startCount: number
-    count: number
-    error?: string | null
-    isSet: boolean
-}
+export const Display = () => {
 
-export const Display = (props: DisplayPropsType) => {
+    const { maxCount, startCount, isSet } = useAppSelector(selectSettings)
+    const count = useAppSelector(selectCounter);
 
-
-    if (initialStateSettings.startCount < 0 || initialStateSettings.startCount === initialStateSettings.maxCount || initialStateSettings.startCount > initialStateSettings.maxCount) {
+    if (startCount < 0 || startCount === maxCount || startCount > maxCount) {
         return <div className="display">Incorrect value!</div>
     }
 
-    if (!initialStateSettings.isSet) {
+    if (!isSet) {
         return <div className="display">Enter values and press 'Set'</div>;
     }
 
     return (
-        <div className="display" style={{color: props.count === initialStateSettings.maxCount ? 'red' : 'inherit'}}>
-            {initialState}
+        <div className="display" style={{color: count === maxCount ? 'red' : 'inherit'}}>
+            {count}
         </div>
     );
 };
